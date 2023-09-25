@@ -14,21 +14,21 @@ function MealDetailsScreen({route,navigation}){
 
     const mealIsFav=favMealCtx.ids.includes(mealid);    
     function onPressHandler() {
-        // console.log("pressed");
-        // if(mealIsFav){
-        //     favMealCtx.removeFavorite(mealid);
-        // }
-        // else{
-        //     favMealCtx.addFavorite(mealid);
-        // }
-        favMealCtx.addFavorite(mealid);
+        console.log("pressed");
+        if(mealIsFav){
+            favMealCtx.removeFavorite(mealid);
+        }
+        else{
+            favMealCtx.addFavorite(mealid);
+        }
+        // favMealCtx.addFavorite(mealid);
     }
     useLayoutEffect(()=>{
         navigation.setOptions({
             headerRight:()=>{
                 return (
                     <IconButtons 
-                    icon={mealIsFav ? 'star':'rocket'} 
+                    icon={mealIsFav ? 'star':'star-outline'} 
                     size={30} 
                     color={"white"} 
                     onPress={onPressHandler}/>
