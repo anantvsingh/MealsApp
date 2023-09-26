@@ -2,6 +2,7 @@ import { StyleSheet,View,Text, FlatList } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 import MealsOverviewTile from "../components/MealsOverviewTile";
 import { useLayoutEffect } from "react";
+import MealList from "../components/MealList";
 
 
 function MealsOverviewScreen({route,navigation}){
@@ -20,33 +21,8 @@ function MealsOverviewScreen({route,navigation}){
         })
     },[catID,navigation])
 
-    function renderOverviewItem(itemData){
-        
-        const item=itemData.item;
-        
-        const mealProps={
-            id:item.id,
-            title:item.title,
-            imageURI:item.imageUrl,
-            
-        };
-        return (
-            <MealsOverviewTile {...mealProps}/>
-        )
-    }
-    return (<View style={styles.container}>
-        
-        <FlatList data={displayMeals} keyExtractor={(item)=>item.id} renderItem={renderOverviewItem}/>
-        </View>);
+    return <MealList item={displayMeals}/>
 }
 
 export default MealsOverviewScreen;
 
-const styles=StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:"center",
-        alignItems:"center",
-        fontSize:18
-    }
-})
