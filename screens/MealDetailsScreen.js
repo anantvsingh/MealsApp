@@ -3,11 +3,16 @@ import { MEALS } from "../data/dummy-data";
 
 import { useContext, useLayoutEffect, useState } from "react";
 import IconButtons from "../components/IconButtons";
+import { useDispatch, useSelector } from "react-redux";
 import {FavContext} from '../store/context/favourites-context'
+import { addFavorite,removeFavorite } from "../store/redux/favorite";
 
 
 function MealDetailsScreen({route,navigation}){
     const favMealCtx=useContext(FavContext);
+    // const favMealIds=useSelector((state)=>state.fav.ids);
+    // const dispatch=useDispatch();
+
     const mealid=route.params.mealID
 
     const Mealid=MEALS.find((meal)=>meal.id===mealid);
@@ -17,11 +22,13 @@ function MealDetailsScreen({route,navigation}){
         console.log("pressed");
         if(mealIsFav){
             favMealCtx.removeFavorite(mealid);
+            // dispatch.addFavorite(mealid)
         }
         else{
             favMealCtx.addFavorite(mealid);
+            // dispatch.removeFavorite(mealid)
         }
-        // favMealCtx.addFavorite(mealid);
+        
     }
     useLayoutEffect(()=>{
         navigation.setOptions({
