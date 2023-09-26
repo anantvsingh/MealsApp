@@ -9,24 +9,24 @@ import { addFavorite,removeFavorite } from "../store/redux/favorite";
 
 
 function MealDetailsScreen({route,navigation}){
-    const favMealCtx=useContext(FavContext);
-    // const favMealIds=useSelector((state)=>state.fav.ids);
-    // const dispatch=useDispatch();
+    // const favMealCtx=useContext(FavContext);
+    const favMealIds=useSelector(state=>state.fav.ids);
+    const dispatch=useDispatch();
 
     const mealid=route.params.mealID
 
     const Mealid=MEALS.find((meal)=>meal.id===mealid);
 
-    const mealIsFav=favMealCtx.ids.includes(mealid);    
+    const mealIsFav=favMealIds.includes(mealid);    
     function onPressHandler() {
         console.log("pressed");
         if(mealIsFav){
-            favMealCtx.removeFavorite(mealid);
-            // dispatch.addFavorite(mealid)
+            // favMealCtx.removeFavorite(mealid);
+            dispatch(removeFavorite({id:mealid}));
         }
         else{
-            favMealCtx.addFavorite(mealid);
-            // dispatch.removeFavorite(mealid)
+            // favMealCtx.addFavorite(mealid);
+            dispatch(addFavorite({id:mealid}));
         }
         
     }

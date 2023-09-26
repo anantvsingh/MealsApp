@@ -17,7 +17,7 @@ import { Provider } from 'react-redux';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import FavoriteScreen from './screens/FavoriteScreen';
 import Icon from 'react-native-vector-icons/Ionicons'
-// import { store } from './store/redux/store';
+import { store } from './store/redux/store';
 
 const Stack=createNativeStackNavigator();
 const Drawer=createDrawerNavigator();
@@ -51,8 +51,8 @@ export default function App () {
   
 
   return  (
-    <FavoritesContextProvider>
-    {/* <Provider store={store}> */}
+    // <FavoritesContextProvider>
+    <Provider store={store}>
     <NavigationContainer>
       
       <Stack.Navigator screenOptions={{
@@ -73,8 +73,8 @@ export default function App () {
       
       
      </NavigationContainer>
-     {/* </Provider> */}
-      </FavoritesContextProvider>
+      </Provider> 
+      // </FavoritesContextProvider>
     );
   };
 
